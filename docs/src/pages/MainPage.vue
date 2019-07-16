@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>loll</h1>
     <Report v-if="uploaded" :listOfImages="listOfImages" :htmlData="htmlData" />
     <DropFiles v-else @filesAdded="onFilesAdded" />
   </div>
@@ -12,7 +11,7 @@ import Report from "../components/Report.vue";
 export default {
   data() {
     return {
-      listOfImages: new Map(),
+      listOfImages: [],
       htmlData: undefined,
       uploaded: false
     };
@@ -23,6 +22,7 @@ export default {
   },
   methods: {
     onFilesAdded(listOfImages, htmlData) {
+      debugger;
       this.listOfImages = listOfImages;
       this.htmlData = htmlData;
       this.uploaded = true;

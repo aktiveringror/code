@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-dropzone
+    <vue-dropzone class="dropZone"
       ref="myVueDropzone"
       id="dropzone"
       @vdropzone-success="vsuccess"
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import vueDropzone from "../../../dist/vue2Dropzone.js";
+import vue2Dropzone  from "../../../dist/vue2Dropzone.js";
 export default {
   name: "DropFiles",
   data() {
@@ -25,7 +25,7 @@ export default {
         "http://www.vivo.colostate.edu/hbooks/pathphys/digestion/liver/recirc.png",
       ok: true,
       dropzoneOptions: {
-        url: "null",
+        url: "https://httpbin.org/post",
         thumbnailWidth: 150,
         maxFilesize: 10,
         headers: { "My-Awesome-Header": "header value" },
@@ -42,14 +42,14 @@ export default {
       myProgress: 0,
       isMounted: false,
       queueComplete: false,
-      listOfImages: new Map(),
+      listOfImages: [],
       htmlData: undefined,
       countOnAllFiles: 0,
       numberOfFilesBeenLoaded: 0
     };
   },
   components: {
-    vueDropzone
+    vueDropzone: vue2Dropzone 
   },
   methods: {
     vsuccess(file, response) {
@@ -57,7 +57,7 @@ export default {
         this.countOnAllFiles++;
         var reader = new FileReader();
         reader.addEventListener("loadend", (event, name) => {
-          this.listOfImages.set(file.name, event.target.result);
+          this.listOfImages.push(event.target.result);
           this.numberOfFilesBeenLoaded++;
         });
         reader.readAsDataURL(file, file.name);
@@ -104,11 +104,10 @@ export default {
     numberOfFilesBeenLoaded: function(newVal, oldVal) {
       if (
         newVal === this.countOnAllFiles &&
-        this.listOfImages.size > 0 &&
+        this.listOfImages.length > 0 &&
         this.htmlData
       ) {
         this.$emit("filesAdded", this.listOfImages, this.htmlData);
-        this.listOfImages.clear();
         this.htmlData = "";
       }
     }
@@ -117,6 +116,11 @@ export default {
 </script>
 
 <style scoped>
+.dropZone{
+  width: 500px;
+  height: 500px;
+  border-style: solid;
+}
 .active {
   color: #78cb5b;
 }

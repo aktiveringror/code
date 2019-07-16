@@ -2,12 +2,12 @@
 <div>
     <h1>Dette er et emsempel</h1>
     <ul id="example-1">
-        <li v-for="item in getInspectorDetails">
+        <li v-for="item in getInspectorDetails" v-bind:key="item">
             {{ item }}
         </li>
     </ul>
     <ul id="example-2">
-        <li v-for="note in getNotes">
+        <li v-for="note in getNotes" v-bind:key="note">
             {{ note }}
         </li>
     </ul>
@@ -18,11 +18,8 @@
 export default {
     name:'Report',
     props:{
-        listOfImages: { type: Map, default: new Map() },
+        listOfImages: { type: Array, default: () => [] },
         htmlData: { type: Document, default: null },
-    },
-    computed:{
-        
     },
     components: {
 
@@ -37,7 +34,7 @@ export default {
                 let notesHtml = this.htmlData.getElementsByClassName('note_text');
                 let notes = Array.from(notesHtml).map(element => element.innerText );
                 return notes;
-            }
+            },
     },
     methods: {
         
