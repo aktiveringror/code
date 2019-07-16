@@ -1,22 +1,35 @@
-# aktivror
+# vue-dropzone
 
-> My incredible Nuxt.js project
+**CO-MAINTAINERS WANTED**
+This component has far outgrown my initial expectations and I'm not able to provide the amount of support that users require. If you'd like to help out with it's maintenance drop a [note on this issue](https://github.com/rowanwins/vue-dropzone/issues/473)
 
-## Build Setup
+A Vue component for file uploads, powered by [Dropzone.js](http://www.dropzonejs.com/). [Check out the demo](https://rowanwins.github.io/vue-dropzone/docs/dist/index.html).
+
+A **Nuxt SSR-compatible** component can be found at [npm](https://www.npmjs.com/package/nuxt-dropzone) and [github](https://github.com/Etheryte/nuxt-dropzone). Thanks to [@Etheryte](https://github.com/Etheryte)
+
+---
+
+![](https://i.imgur.com/kUbjks1.gif)
+
+## Development
 
 ``` bash
-# install dependencies
-$ npm run install
+# install your dependencies
+npm install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+# install vue-dropzone
+npm install vue2-dropzone
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+(or with yarn)
 
-# generate static project
-$ npm run generate
+yarn add vue2-dropzone
+
+# Execute dependencies script 
+npm run dev
+
+# serve example and docs at localhost:8080
+npm run start
+
+# build any changes made
+npm run build
 ```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
